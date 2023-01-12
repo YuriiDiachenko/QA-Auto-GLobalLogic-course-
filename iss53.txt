@@ -1,0 +1,16 @@
+iss53 >> iss53.txt
+echo iss53 >> iss53.txt
+
+
+
+
+git
+q
+quit
+echo iss53 >> iss53.txt
+
+
+echo iss53
+iss53
+iss53
+second_step
