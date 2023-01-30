@@ -1,26 +1,26 @@
-import pytest
+import pytest # імпорт модуля pytest
 
 
-class User:
+class User:  # ініціалізація класа
 
-    def __init__ (self):
-        self.name = None
-        self.second_name = None
+    def __init__ (self): # конструктор класа
+        self.name = None # поле класа, зі значенням за замовченням 
+        self.second_name = None # поле класа, зі значенням за замовченням 
 
-    def create(self):
-        self.name = 'Yurii'
-        self.second_name = 'Diachenko'
+    def create(self): # метод об'єкта, який створює новий екземпляр (об'єкт) класа
+        self.name = 'Yurii' # параметр об'єкта з визначенним значенням
+        self.second_name = 'Diachenko' # параметр об'єкта з визначенним значенням
 
-    def remove(self):
+    def remove(self): # метод об'єкта, який міняє значення полів об'єкта на пусті значення
         self.name = ''
         self.second_name = ''
 
 
-@pytest.fixture
-def user():
-    user = User()
-    user.create()
+@pytest.fixture # декоратор фікстури
+def user(): # опис фікстури
+    user = User() # створення об'єкта класа
+    user.create() # виклик методу об'єкта
 
-    yield user
+    yield user #  виконання тесту, в якому була викликана ця фікстура
 
-    user.remove()
+    user.remove() # виклик методу об'єкта
