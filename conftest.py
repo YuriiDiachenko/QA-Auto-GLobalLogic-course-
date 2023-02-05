@@ -1,4 +1,6 @@
 import pytest # імпорт модуля pytest
+from modules.api.clients.github import GitHub # імпорт класу GitHub з файлу github.py
+
 
 
 class User:  # ініціалізація класа
@@ -24,3 +26,8 @@ def user(): # опис фікстури
     yield user #  виконання тесту, в якому була викликана ця фікстура
 
     user.remove() # виклик методу об'єкта
+
+@pytest.fixture # декоратор фікстури
+def github_api(): # ініціалізація та подальший опис фікстури
+    api = GitHub() # виклик класу GitHub, який ми в 2 рядку імпортували
+    yield api # виконання тесту, в якому була викликана ця фікстура
