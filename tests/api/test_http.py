@@ -5,16 +5,16 @@ import requests
 @pytest.mark.http
 def test_first_request():
     r = requests.get('https://api.github.com/zen')
-    print(f'Respone is {r.text}')
+    print(f'Respose is {r.text}')
 
 
 @pytest.mark.http
 def test_second_request():
-    r = requests.get('https://api.github.com/users/YuriiDiachenko')
+    r = requests.get('https://api.github.com/users/defunkt')
     body = r.json()
     headers = r.headers
 
-    assert body['name'] == 'Yurii Diachenko'
+    assert body['name'] == 'Chris Wanstrath'
     assert r.status_code == 200
     assert headers['Server'] == 'GitHub.com'
 
