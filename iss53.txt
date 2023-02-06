@@ -1,3 +1,0 @@
-iss53 >> iss53.txt
-echo iss53 >> iss53.txt
-second_step
