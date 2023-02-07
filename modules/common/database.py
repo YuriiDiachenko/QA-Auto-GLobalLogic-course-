@@ -24,3 +24,48 @@ class Database:
         self.cursor.execute(query)
         record = self.cursor.fetchall()
         return record
+
+# метод об'єкту, що оновлює кількість товару в таблиці на введене (команда UPDATE).
+# який товар оновлювати - вказується в product_id 
+
+    def update_product_qnt_by_id(self, product_id, qnt):
+        query = f'UPDATE products SET quantity = {qnt} WHERE id = {product_id}'
+        self.cursor.execute(query)
+        self.connection.commit()
+
+# метод об'єкту, який отримує значення колонки "qnt" для певного продукта.
+# потрібно для тестування попереднього методу
+
+    def select_product_qnt_by_id(self, product_id):
+        query = f'SELECT quantity FROM products WHERE id = {product_id}'
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
+
+# метод об'єкту, який буде вставляти дані в таблицю products (команда INSERT)
+
+    def insert_product(self, product_id, name, description, qnt):
+        query = f"INSERT OR REPLACE INTO products (id, name, description, quantity) \
+        VALUES ({product_id}, '{name}', '{description}', {qnt})"
+        self.cursor.execute(query)
+        self.connection.commit()
+
+# метод об'єкту, який буде видаляти дані в таблиці products (команда DELETE)
+
+    def delete_product_by_id(self, product_id):
+        query = f"DELETE FROM products WHERE id = {product_id}"
+        self.cursor.execute(query)
+        self.connection.commit()
+
+# метод об'єкту, який перевіряє правильність даних 
+# (порядок даних і дані, які виводяться) після виконання команди JOIN в таблиці orders
+
+    def get_detailed_orders(self):
+        query = f'SELECT orders.id, customers.name, products.name, \
+                products.description, orders.order_date \
+                FROM orders \
+                JOIN customers ON orders.customer_id = customers.id \
+                JOIN products ON orders.product_id = products.id'
+        self.cursor.execute(query)
+        record = self.cursor.fetchall()
+        return record
